@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import { View, Button, TextInput } from 'react-native'
-import firebaseConfig from '../../config';
-import { initializeApp } from 'firebase/app';
-import {
-    getAuth,
-    signInWithEmailAndPassword
-  } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-  
-initializeApp(firebaseConfig);
-
-const auth = getAuth();
+import { auth } from '../firebaseConfig';
 
 export class Login extends Component {
     constructor(props) {
