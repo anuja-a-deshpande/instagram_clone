@@ -3,10 +3,12 @@ import { collection, getDocs ,query, where, } from "firebase/firestore";
 import {auth, db } from "../../components/firebaseConfig"
 
 const usersCol = collection(db, "users");
-const q2 = query(usersCol, where("email", "==", auth.currentUser.email));
 
 export function fetchUser() {
     return ((dispatch) => {
+        if(auth.currentUser){
+            const q2 = query(usersCol, where("email", "==", auth.currentUser.email));
+            
         getDocs(q2)
         .then((snapshots)=>
                 {
@@ -20,7 +22,7 @@ export function fetchUser() {
                     }}
         )});
                 // console.log('snapshot', snapshot._firestore.app._container.providers);
-                
+        }
             // })
     })
 }
