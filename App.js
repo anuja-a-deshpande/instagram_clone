@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native'
-import firebaseConfig from './config'
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -10,6 +7,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
+import { auth } from './components/firebaseConfig';
 
 import LandingScreen from './components/auth/Landing'
 import RegisterScreen from './components/auth/Register'
@@ -18,11 +16,7 @@ import MainScreen from './components/main'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
-initializeApp(firebaseConfig);
-const auth = getAuth();
-
 const Stack = createStackNavigator();
-
 
 export class App extends Component {
   constructor(props) {

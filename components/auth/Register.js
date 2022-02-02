@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import { View, Button, TextInput } from 'react-native'
-import firebaseConfig from '../../config';
-import { initializeApp } from 'firebase/app';
-import { collection, addDoc, getFirestore } from "firebase/firestore"; 
-import {
-    getAuth,
-    createUserWithEmailAndPassword
-  } from 'firebase/auth';
-
-initializeApp(firebaseConfig);
-const auth = getAuth();
-const db = getFirestore();
+import { collection, addDoc } from "firebase/firestore"; 
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebaseConfig';
 
 export class Register extends Component {
     constructor(props) {
@@ -46,14 +38,17 @@ export class Register extends Component {
         return (
             <View>
                 <TextInput
+                    // autoCapitalize='none'
                     placeholder="name"
                     onChangeText={(name) => this.setState({ name })}
                 />
                 <TextInput
+                    autoCapitalize='none'
                     placeholder="email"
                     onChangeText={(email) => this.setState({ email })}
                 />
                 <TextInput
+                    autoCapitalize='none'
                     placeholder="password"
                     secureTextEntry={true}
                     onChangeText={(password) => this.setState({ password })}
